@@ -27,15 +27,9 @@ app.post('/company', (req, res) => {
     try {
         const new_company = new ModelCompany({
             company_id: req.body.company_id,
-            definition: req.body.definition,
+            company_name: req.body.definition,
             giro_acc_no: req.body.giro_acc_no,
             giro_penampung_no: req.body.giro_penampung_no,
-            branch: {
-                branch_code: req.body.branch.branch_code,
-                branch_name: req.body.branch.branch_name,
-                acc_no_rak_br: req.body.branch.acc_no_rak_br,
-                acc_no_rak_ho: req.body.branch.acc_no_rak_ho
-            }
         });
 
         new_company.save().then(() => {
@@ -45,7 +39,7 @@ app.post('/company', (req, res) => {
         });
     } catch (error) {
         return res.json({
-            err: 'Error ' + err
+            err: 'Error ' + error
         });
     }
 });
